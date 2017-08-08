@@ -11,4 +11,8 @@ function Thumbnail({book}) {
   )
 }
 
+Thumbnail.propTypes = {
+  book: React.PropTypes.object.isRequired
+}
+
 export default Thumbnail;

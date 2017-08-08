@@ -37,3 +37,8 @@ export default class Search extends React.Component {
     })
   }
 }
+
+Search.propTypes = {
+  bookList: React.PropTypes.array.isRequired,
+  setSearchResults: React.PropTypes.func.isRequired
+}

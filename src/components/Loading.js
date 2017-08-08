@@ -11,4 +11,9 @@ function Loading({isError, isLoading}) {
   )
 }
 
+Loading.propTypes = {
+  isError: React.PropTypes.bool.isRequired,
+  isLoading: React.PropTypes.bool.isRequired
+}
+
 export default Loading;
