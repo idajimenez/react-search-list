@@ -38,7 +38,7 @@ class App extends Component {
   renderList = () => {
     return (
       <div className='container'>
-        <Search bookList={this.state.bookList} setSearchResults={this.setSearchResults}/>
+        <Search books={this.state.books} setSearchResults={this.setSearchResults}/>
         {this.state.bookList.map((list, i) => 
           <ListRow book={list} key={i} />
         )}

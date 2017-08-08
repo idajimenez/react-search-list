@@ -12,7 +12,7 @@ export default class Search extends React.Component {
   // Set searchText
   // Change list based from searchText
   handleChange = (event) => {
-    this.searchText = event.target.value;
+    this.searchText = event.target.value.toLowerCase();
     this.props.setSearchResults(this.getSearch(), this.searchText);
   }
 
@@ -31,14 +31,14 @@ export default class Search extends React.Component {
 
   // Returns the list that matches searchText;
   getSearch = () => {    
-    return this.props.bookList.filter(book => {
+    return this.props.books.filter(book => {
       let title = book.title.toLowerCase();
-      return title.indexOf(this.searchText.toLowerCase()) !== -1;
+      return title.indexOf(this.searchText) !== -1;
     })
   }
 }
 
 Search.propTypes = {
-  bookList: React.PropTypes.array.isRequired,
+  books: React.PropTypes.array.isRequired,
   setSearchResults: React.PropTypes.func.isRequired
 }
