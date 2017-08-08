@@ -1,3 +1,5 @@
+// Component from displaying fetching data
+
 import React from 'react';
 
 function Loading() {

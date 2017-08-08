@@ -1,3 +1,6 @@
+// Component used to display each list
+// Serves as the container for thumbnail and details
+
 import React from 'react';
 import Details from './Details';
 import Thumbnail from './Thumbnail';

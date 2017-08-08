@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// Import custom components
 import Loading from './components/Loading';
 import ListRow from './components/ListRow';
 import Search from './components/Search';
@@ -7,6 +8,7 @@ import Search from './components/Search';
 class App extends Component {
   constructor() {
     super();
+    // Iniital states
     this.state = {
       bookList: [],
       books: [],
@@ -15,6 +17,7 @@ class App extends Component {
   }
 
   componentWillMount() {
+    // Fetch data from API before component mounts
     this.fetchFromApi();
   }
 
@@ -30,6 +33,7 @@ class App extends Component {
     );
   }
 
+  // Display search box and list of books
   renderList = () => {
     return (
       <div className='container'>
@@ -41,6 +45,7 @@ class App extends Component {
     )
   }
 
+  // Fetching data
   fetchFromApi = () => {
     fetch('https://www.googleapis.com/books/v1/volumes?q=harry%20potter')
     .then(response => {
@@ -56,6 +61,8 @@ class App extends Component {
     });
   }
 
+  // Get items needed from the result from the API
+  // Set items to state
   getItems = (items) => {
     let results = items.map(item => {
       let retailPrice = (item.saleInfo.saleability === 'NOT_FOR_SALE') ?
@@ -75,6 +82,7 @@ class App extends Component {
     });
   }
 
+  // Change list based on search text
   setSearchResults = (results, searchText) => {
     if (searchText === '') {
       this.setState({ bookList: this.state.books });  

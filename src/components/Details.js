@@ -1,3 +1,5 @@
+// Component used to display book title and retail price
+
 import React from 'react';
 
 function Details({book}) {
