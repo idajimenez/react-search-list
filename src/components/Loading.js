@@ -2,10 +2,11 @@
 
 import React from 'react';
 
-function Loading() {
+function Loading({isError, isLoading}) {
+  let text = isLoading ? 'Fetching Data...' : isError ? 'No results found' : '';
   return (
-    <div>
-      <h3>Fetching Data...</h3> 
+    <div className='loadingText'>
+      <h3>{text}</h3> 
     </div>
   )
 }

@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       bookList: [],
       books: [],
-      isLoading: true
+      isLoading: true,
+      isError: false
     }
   }
 
@@ -25,8 +26,8 @@ class App extends Component {
     return (
       <div>
         {
-          this.state.isLoading ?
-          <Loading bookList={this.state.bookList} />
+          (this.state.isLoading || this.state.isError) ?
+          <Loading isError={this.state.isError} isLoading={this.state.isLoading} />
           : this.renderList()
         }
       </div>
@@ -51,12 +52,14 @@ class App extends Component {
     .then(response => {
       if (response.status !== 200) {  
         console.log(`Something went wrong. Status Code: ${response.status}`);
+        this.setComponentStates([]);
         return;
       }
       response.json().then(data => {  
         this.getItems(data.items);
       });
     }).catch(err => {
+      this.setComponentStates([]);
       console.log('Fetching error', err);
     });
   }
@@ -75,12 +78,17 @@ class App extends Component {
         retailPrice: retailPrice
       }
     });
+    this.setComponentStates(results);
+  }
+
+  setComponentStates = (results) => {
     this.setState({ 
       bookList: results,
       books: results,
-      isLoading: false 
+      isError: results.length === 0,
+      isLoading: false
     });
-  }
+  } 
 
   // Change list based on search text
   setSearchResults = (results, searchText) => {
